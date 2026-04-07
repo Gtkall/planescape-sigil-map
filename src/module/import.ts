@@ -14,9 +14,6 @@ const MAP_HEIGHT = 4400;
 export async function importSigilData(): Promise<void> {
   (ui as any).notifications.info("Planescape Sigil Map | Importing map data...");
 
-  // Clean up previous import before re-importing
-  await cleanupPreviousImport();
-
   const dataset = await loadDataset();
   if (!dataset) return;
 
@@ -50,7 +47,7 @@ export async function importSigilData(): Promise<void> {
  * Removes previously imported scenes, journal entries, and folders
  * created by this module, so a fresh re-import doesn't create duplicates.
  */
-async function cleanupPreviousImport(): Promise<void> {
+export async function cleanupPreviousImport(): Promise<void> {
   // Delete scenes created by this module
   const scenes = (game as any).scenes.filter(
     (s: any) => s.flags?.[MODULE_ID] !== undefined,
