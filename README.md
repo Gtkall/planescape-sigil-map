@@ -29,11 +29,11 @@ https://github.com/Gtkall/planescape-sigil-map/releases/latest/download/module.j
 ## Usage
 
 1. Enable the module in your world's **Module Management** settings
-2. As GM, the Sigil data will auto-import on first activation
+2. As GM, a dialog will prompt you to import the Sigil data on first activation
 3. Open the **Sigil - City of Doors** scene from the scenes sidebar
 4. Click any map pin to view the location's journal entry
 
-To re-import data (e.g. after a module update), clear the "Data Import Version" in module settings.
+When the module is updated, a dialog will offer to re-import with the latest data (warning you about any edits you've made). You can also manually import or re-import via **Configure Settings → Module Settings → Planescape Sigil Map → Import / Re-import**.
 
 ## Development
 
