@@ -19,3 +19,33 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+## Third-Party Notices
+
+### City of Doors — Map Data (CC BY 4.0)
+https://github.com/amargon/city-of-doors
+
+The map dataset (location data, coordinates, venue descriptions) bundled in this
+module originates from the "City of Doors" project by amargon. The map data is
+licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+The underlying source code of the City of Doors project is licensed under the
+MIT License. Copyright (c) 2017 amargon.
+
+### City of Doors — Artwork Credits
+
+The Sigil map artwork is derived from the planewalker.com community resources.
+
+  Montage: Denis "Ambrus" Richard
+  Original cartography: Rob Lazzaretti
+  Additional artwork: Tony DiTerlizzi & David S. "Diesel" LaForce
+
+### Wizards of the Coast — Planescape Campaign Setting
+Planescape, Sigil, and all related setting content (location names, NPC names,
+lore descriptions, book references) are the property of Wizards of the Coast LLC.
+This project is unofficial fan content permitted under the Wizards of the Coast
+Fan Content Policy. It is not affiliated with, endorsed, or sponsored by Wizards
+of the Coast.
