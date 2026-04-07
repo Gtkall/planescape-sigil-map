@@ -28,6 +28,7 @@ jobs:
         run: npm run lint
 
       - name: Build
+        if: hashFiles('src/**/*.ts') != ''
         run: npm run build
 
   release:
