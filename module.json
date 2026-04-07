@@ -2,7 +2,7 @@
   "id": "planescape-sigil-map",
   "title": "Planescape Sigil Map",
   "description": "An interactive map of Sigil from the Planescape Campaign Setting, with journal entry pins for every notable location.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "compatibility": {
     "minimum": 13,
     "verified": 13
@@ -32,5 +32,5 @@
   ],
   "url": "https://github.com/Gtkall/planescape-sigil-map",
   "manifest": "https://github.com/Gtkall/planescape-sigil-map/releases/latest/download/module.json",
-  "download": "https://github.com/Gtkall/planescape-sigil-map/releases/download/v1.0.0/planescape-sigil-map.zip"
+  "download": "https://github.com/Gtkall/planescape-sigil-map/releases/download/v1.1.0/planescape-sigil-map.zip"
 }
