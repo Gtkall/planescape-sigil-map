@@ -7,8 +7,8 @@
     "build": "vite build",
     "watch": "vite build --watch",
     "clean": "rm -rf dist",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
+    "lint": "eslint src --no-error-on-unmatched-pattern",
+    "lint:fix": "eslint src --fix --no-error-on-unmatched-pattern",
     "fetch-data": "node scripts/fetch-map-data.mjs",
     "fetch-data:force": "node scripts/fetch-map-data.mjs --force",
     "prepare": "husky"
