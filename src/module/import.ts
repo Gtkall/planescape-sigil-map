@@ -155,14 +155,17 @@ async function createJournalEntries(
 }
 
 function buildPageContent(loc: MapLocation): string {
-  // The description from city-of-doors already contains HTML
   let content = "";
 
   if (loc.about) {
     content += `<p><strong>Source:</strong> ${loc.about}</p>`;
   }
 
-  content += loc.description;
+  // Convert FontAwesome star spans to unicode — empty spans get stripped
+  // by Foundry's ProseMirror editor on save
+  content += loc.description
+    .replace(/<span class='fas fa-star'><\/span>/g, "★")
+    .replace(/<span class='far fa-star'><\/span>/g, "☆");
 
   return content;
 }
