@@ -35,6 +35,11 @@ https://creativecommons.org/licenses/by/4.0/
 The underlying source code of the City of Doors project is licensed under the
 MIT License. Copyright (c) 2017 amargon.
 
+Modifications made in this project:
+- Map location data (map.json) is transformed at runtime into FoundryVTT
+  JournalEntry and Scene Note documents. The source data content is unmodified.
+- The Sigil map image (sigil-map.png) is used unmodified as a Scene background.
+
 ### City of Doors — Artwork Credits
 
 The Sigil map artwork is derived from the planewalker.com community resources.
