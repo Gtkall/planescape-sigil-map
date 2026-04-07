@@ -111,17 +111,20 @@ async function skipVersion(version: string): Promise<void> {
 }
 
 /**
- * Foundry settings menu that provides import/re-import functionality.
- * Uses ApplicationV2 as the v13 replacement for FormApplication.
+ * Foundry settings menu entry. Opens the import dialog immediately
+ * instead of rendering its own UI.
  */
-class SigilImportMenu extends (foundry as any).applications.api.ApplicationV2 {
+class SigilImportMenu extends (foundry as any).applications.api.HandlebarsApplicationMixin(
+  (foundry as any).applications.api.ApplicationV2,
+) {
   static override readonly DEFAULT_OPTIONS = {
     id: "sigil-import-menu",
     window: { title: "Sigil Map Data Import" },
   };
 
-  override _onRender(): void {
-    // Immediately close this shell and show the dialog instead
+  static override readonly PARTS = {};
+
+  override _onFirstRender(): void {
     void this.close();
     void showImportDialog();
   }
