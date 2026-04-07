@@ -13,7 +13,9 @@
       "url": "https://github.com/Gtkall"
     }
   ],
-  "esmodules": ["planescape-sigil-map.js"],
+  "esmodules": [
+    "planescape-sigil-map.js"
+  ],
   "packs": [
     {
       "name": "sigil-journal-entries",
