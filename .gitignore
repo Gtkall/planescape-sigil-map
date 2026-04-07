@@ -1,1 +1,40 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+
+# Foundry data (local dev symlink)
+foundrydata/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Package archives
+*.tgz
+*.zip
+
+# Cache
+.cache
+.eslintcache

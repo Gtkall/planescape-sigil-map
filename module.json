@@ -1,82 +1,34 @@
 {
-    "id": "planescape-sigil-map",
-    "name": "planescape-sigil-map",
-    "title": "Planescape Sigil Map",
-    "description": "An interactive map of Sigil from the Planescape Campaign Setting.",
-    "version": "1.0.0",
-    "authors": [
-        {
-            "name": "Georgios Karettas",
-            "discord": "Gtkall#7849",
-            "url": "https://github.com/Gtkall"
-        }
-    ],
-    "minimumCoreVersion": "0.8.6",
-    "compatibleCoreVersion": "9",
-    "compatibility": {
-        "minimum": "0.8.6",
-        "verified": "10"
+  "id": "planescape-sigil-map",
+  "title": "Planescape Sigil Map",
+  "description": "An interactive map of Sigil from the Planescape Campaign Setting, with journal entry pins for every notable location.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13
+  },
+  "authors": [
+    {
+      "name": "Georgios Karettas",
+      "url": "https://github.com/Gtkall"
+    }
+  ],
+  "esmodules": ["planescape-sigil-map.js"],
+  "packs": [
+    {
+      "name": "sigil-journal-entries",
+      "label": "Sigil Journal Entries",
+      "path": "packs/journal-entries",
+      "type": "JournalEntry"
     },
-    "packs": [
-        {
-            "name": "module-creatures",
-            "label": "Module Creatures",
-            "path": "./packs/creatures.db",
-            "entity": "Actor",
-            "type": "Actor",
-            "system": "dnd5e"
-        },
-        {
-            "name": "module-items",
-            "label": "Module Items",
-            "path": "./packs/items.db",
-            "entity": "Item",
-            "type": "Item",
-            "system": "dnd5e"
-        },
-        {
-            "name": "module-scenes",
-            "label": "Module Scenes",
-            "path": "./packs/scenes.db",
-            "entity": "Scene",
-            "type": "Scene"
-        },
-        {
-            "name": "module-journal-entries",
-            "label": "Module Journal Entries",
-            "path": "./packs/journal-entries.db",
-            "entity": "JournalEntry",
-            "type": "JournalEntry"
-        },
-        {
-            "name": "module-macros",
-            "label": "Module Macros",
-            "path": "./packs/macros.db",
-            "entity": "Macro",
-            "type": "Macro"
-        },
-        {
-            "name": "module-roll-tables",
-            "label": "Module Roll Tables",
-            "path": "./packs/roll-tables.db",
-            "entity": "RollTable",
-            "type": "RollTable"
-        },
-        {
-            "name": "module-playlists",
-            "label": "Module Playlists",
-            "path": "./packs/playlists.db",
-            "entity": "Playlist",
-            "type": "Playlist"
-        },
-        {
-            "name": "module-adventures",
-            "label": "Module Adventures",
-            "path": "./packs/adventures.db",
-            "entity": "Adventure",
-            "type": "Adventure"
-        }
-    ],
-    "manifest": "https://gitlab.com/encounterlibrary/my-content-module/-/raw/main/module.json",
-    "download": "https://gitlab.com/encounterlibrary/my-content-module/-/raw/main/my-content-module.zip"
-  }
+    {
+      "name": "sigil-scenes",
+      "label": "Sigil Scenes",
+      "path": "packs/scenes",
+      "type": "Scene"
+    }
+  ],
+  "url": "https://github.com/Gtkall/planescape-sigil-map",
+  "manifest": "https://github.com/Gtkall/planescape-sigil-map/releases/latest/download/module.json",
+  "download": "https://github.com/Gtkall/planescape-sigil-map/releases/download/v1.0.0/planescape-sigil-map.zip"
+}
