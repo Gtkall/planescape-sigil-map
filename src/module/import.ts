@@ -138,6 +138,19 @@ function buildPageContent(loc: MapLocation): string {
 }
 
 /**
+ * Resolves a location's pin class + fill color to an icon SVG path.
+ * Icons are generated at build time by scripts/generate-icons.mjs.
+ * e.g. "circular fontawesome fas fa-home" + "#bf5138" → "modules/.../icons/home__bf5138.svg"
+ */
+function pinIconPath(loc: MapLocation): string {
+  const parts = loc.pin.split(" ");
+  const iconClass = parts[parts.length - 1]; // "fa-home"
+  const iconName = iconClass.replace("fa-", "");
+  const color = loc.fill.replace("#", "");
+  return `modules/${MODULE_ID}/icons/${iconName}__${color}.svg`;
+}
+
+/**
  * Creates a Scene with the Sigil map as background and Note pins
  * for every location that has valid coordinates.
  */
@@ -165,6 +178,9 @@ async function createSigilScene(
       pageId: ref.pageId,
       x: Math.round(x * MAP_WIDTH),
       y: Math.round(y * MAP_HEIGHT),
+      texture: {
+        src: pinIconPath(loc),
+      },
       iconSize: 32,
       text: loc.title,
       textColor: category?.color ?? "#FFFFFF",

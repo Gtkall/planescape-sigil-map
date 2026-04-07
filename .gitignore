@@ -6,6 +6,9 @@ dist/
 build/
 *.tsbuildinfo
 
+# Generated icons (built by scripts/generate-icons.mjs)
+src/icons/
+
 # Environment
 .env
 .env.*
