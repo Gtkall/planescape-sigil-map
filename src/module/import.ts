@@ -43,6 +43,36 @@ export async function importSigilData(): Promise<void> {
   );
 }
 
+/**
+ * Removes previously imported scenes, journal entries, and folders
+ * created by this module, so a fresh re-import doesn't create duplicates.
+ */
+export async function cleanupPreviousImport(): Promise<void> {
+  // Delete scenes created by this module
+  const scenes = (game as any).scenes.filter(
+    (s: any) => s.flags?.[MODULE_ID] !== undefined,
+  ) as any[];
+  if (scenes.length > 0) {
+    await (Scene as any).deleteDocuments(scenes.map((s: any) => s.id));
+  }
+
+  // Delete journal entries created by this module
+  const journals = (game as any).journal.filter(
+    (j: any) => j.flags?.[MODULE_ID] !== undefined,
+  ) as any[];
+  if (journals.length > 0) {
+    await (JournalEntry as any).deleteDocuments(journals.map((j: any) => j.id));
+  }
+
+  // Delete the "Sigil Locations" folder
+  const folders = (game as any).folders.filter(
+    (f: any) => f.name === "Sigil Locations" && f.type === "JournalEntry",
+  ) as any[];
+  if (folders.length > 0) {
+    await (Folder as any).deleteDocuments(folders.map((f: any) => f.id));
+  }
+}
+
 async function loadDataset(): Promise<MapDataset | null> {
   try {
     const response = await fetch(`modules/${MODULE_ID}/dataset/map.json`);
@@ -125,16 +155,32 @@ async function createJournalEntries(
 }
 
 function buildPageContent(loc: MapLocation): string {
-  // The description from city-of-doors already contains HTML
   let content = "";
 
   if (loc.about) {
     content += `<p><strong>Source:</strong> ${loc.about}</p>`;
   }
 
-  content += loc.description;
+  // Convert FontAwesome star spans to unicode — empty spans get stripped
+  // by Foundry's ProseMirror editor on save
+  content += loc.description
+    .replace(/<span class='fas fa-star'><\/span>/g, "★")
+    .replace(/<span class='far fa-star'><\/span>/g, "☆");
 
   return content;
+}
+
+/**
+ * Resolves a location's pin class + fill color to an icon SVG path.
+ * Icons are generated at build time by scripts/generate-icons.mjs.
+ * e.g. "circular fontawesome fas fa-home" + "#bf5138" → "modules/.../icons/home__bf5138.svg"
+ */
+function pinIconPath(loc: MapLocation): string {
+  const parts = loc.pin.split(" ");
+  const iconClass = parts[parts.length - 1]; // "fa-home"
+  const iconName = iconClass.replace("fa-", "");
+  const color = loc.fill.replace("#", "");
+  return `modules/${MODULE_ID}/icons/${iconName}__${color}.svg`;
 }
 
 /**
@@ -165,6 +211,9 @@ async function createSigilScene(
       pageId: ref.pageId,
       x: Math.round(x * MAP_WIDTH),
       y: Math.round(y * MAP_HEIGHT),
+      texture: {
+        src: pinIconPath(loc),
+      },
       iconSize: 32,
       text: loc.title,
       textColor: category?.color ?? "#FFFFFF",

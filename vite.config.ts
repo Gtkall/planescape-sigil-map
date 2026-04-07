@@ -25,6 +25,7 @@ export default defineConfig({
       targets: [
         { src: "module.json", dest: "." },
         { src: "src/artwork/*", dest: "artwork" },
+        { src: "src/icons/*", dest: "icons" },
         { src: "src/packs/*", dest: "packs" },
         { src: "src/dataset/*", dest: "dataset" },
         { src: "LICENSE", dest: "." },
