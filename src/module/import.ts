@@ -14,6 +14,9 @@ const MAP_HEIGHT = 4400;
 export async function importSigilData(): Promise<void> {
   (ui as any).notifications.info("Planescape Sigil Map | Importing map data...");
 
+  // Clean up previous import before re-importing
+  await cleanupPreviousImport();
+
   const dataset = await loadDataset();
   if (!dataset) return;
 
@@ -41,6 +44,36 @@ export async function importSigilData(): Promise<void> {
   (ui as any).notifications.info(
     `Planescape Sigil Map | Imported ${locations.length} locations across ${byWard.size} wards.`,
   );
+}
+
+/**
+ * Removes previously imported scenes, journal entries, and folders
+ * created by this module, so a fresh re-import doesn't create duplicates.
+ */
+async function cleanupPreviousImport(): Promise<void> {
+  // Delete scenes created by this module
+  const scenes = (game as any).scenes.filter(
+    (s: any) => s.flags?.[MODULE_ID] !== undefined,
+  ) as any[];
+  if (scenes.length > 0) {
+    await (Scene as any).deleteDocuments(scenes.map((s: any) => s.id));
+  }
+
+  // Delete journal entries created by this module
+  const journals = (game as any).journal.filter(
+    (j: any) => j.flags?.[MODULE_ID] !== undefined,
+  ) as any[];
+  if (journals.length > 0) {
+    await (JournalEntry as any).deleteDocuments(journals.map((j: any) => j.id));
+  }
+
+  // Delete the "Sigil Locations" folder
+  const folders = (game as any).folders.filter(
+    (f: any) => f.name === "Sigil Locations" && f.type === "JournalEntry",
+  ) as any[];
+  if (folders.length > 0) {
+    await (Folder as any).deleteDocuments(folders.map((f: any) => f.id));
+  }
 }
 
 async function loadDataset(): Promise<MapDataset | null> {
